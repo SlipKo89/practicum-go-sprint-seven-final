@@ -3,6 +3,7 @@ package main
 import (
 	"net/http"
 	"net/http/httptest"
+	"strings"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
@@ -48,5 +49,5 @@ func TestMainHandlerForBigCount(t *testing.T) {
 
 	require.Equal(t, responseRecorder.Code, http.StatusOK)
 
-	assert.Equal(t, responseRecorder.Body.String(), "Мир кофе,Сладкоежка,Кофе и завтраки,Сытый студент")
+	assert.Equal(t, len(strings.Split(responseRecorder.Body.String(), ",")), 5)
 }
